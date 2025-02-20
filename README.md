@@ -27,16 +27,16 @@ EchoCast is a modern, minimalistic, and fully responsive podcast streaming appli
 
 ## User Stories
 ### As a User, I want to:
-- [ ] Browse and explore different podcasts.
-- [ ] Search for specific podcasts by name or category.
+- [x] Browse and explore different podcasts.
+- [x] Search for specific podcasts by name or category.
 - [ ] Sort podcasts ascending or descending order
-- [ ] Play podcast episodes directly in the app.
-- [ ] Mark podcasts as favorites for easy access later.
-- [ ] View a list of my favorited podcasts on a dedicated page.
-- [ ] Remove a podcast from my favorites list when I no longer want it.
-- [ ] Toggle between light and dark mode for better visual comfort.
+- [x] Play podcast episodes directly in the app.
+- [x] Mark podcasts as favorites for easy access later.
+- [x] View a list of my favorited podcasts on a dedicated page.
+- [x] Remove a podcast from my favorites list when I no longer want it.
+- [x] Toggle between light and dark mode for better visual comfort.
 - [ ] Enjoy a seamless, modern, and intuitive user experience.
-- [ ]  Experience a responsive design that adapts seamlessly across mobile, tablet, and desktop devices.
+- [x]  Experience a responsive design that adapts seamlessly across mobile, tablet, and desktop devices.
 
  - [ ] Filter podcasts by duration, popularity, release date, or genre for a more refined search experience.
 
@@ -48,7 +48,7 @@ EchoCast is a modern, minimalistic, and fully responsive podcast streaming appli
 
  - [ ] See detailed podcast information, including description, host details, episode count, and listener ratings.
 
- - [ ] Access a dedicated episode page for each podcast, where I can see show notes and timestamps.
+ - [x] Access a dedicated episode page for each podcast, where I can see show notes and timestamps.
 
  - [ ] Download episodes for offline listening.
 
@@ -66,7 +66,7 @@ EchoCast is a modern, minimalistic, and fully responsive podcast streaming appli
 
  - [ ] Switch between grid and list views when browsing podcasts for a better user experience.
 
- - [ ] Experience smooth animations and transitions for a modern and polished UI.
+ - [x] Experience smooth animations and transitions for a modern and polished UI.
 
 ## Tech Stack
 - **Frontend:** Next.js, TypeScript, Tailwind CSS
