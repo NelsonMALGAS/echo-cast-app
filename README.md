@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EchoCast - Podcast Streaming App
 
-## Getting Started
+## Overview
+EchoCast is a modern, minimalistic, and fully responsive podcast streaming application built with **Next.js**, **ShadCN**, **TypeScript**, and **Tailwind CSS**. It allows users to explore, favorite, and listen to their favorite podcasts in a seamless and user-friendly environment.
 
-First, run the development server:
+## Features
+✅ **Dark Mode Support** - Easily switch between light and dark themes using the built-in toggle.  
+✅ **Responsive Design** - Fully optimized for desktop, tablet, and mobile devices.  
+✅ **Favorites System** - Users can mark podcasts as favorites for easy access.  
+✅ **Podcast Streaming** - Browse and stream various podcasts effortlessly.  
+✅ **Modern UI/UX** - A sleek, accessible, and intuitive interface.  
 
+## Pages & Functionality
+
+### 🏠 Home Page
+- Displays a list of featured and trending podcasts.
+- Provides a search bar for users to find specific podcasts.
+
+### ⭐ Favorites Page
+- Shows a list of podcasts that the user has marked as favorites.
+- Allows users to remove items from their favorites list.
+
+### 🎙️ Podcasts Page
+- Displays a catalog of available podcasts.
+- Provides detailed information about each podcast.
+- Allows users to play and stream podcast episodes.
+
+## User Stories
+### As a User, I want to:
+- [ ] Browse and explore different podcasts.
+- [ ] Search for specific podcasts by name or category.
+- [ ] Sort podcasts ascending or descending order
+- [ ] Play podcast episodes directly in the app.
+- [ ] Mark podcasts as favorites for easy access later.
+- [ ] View a list of my favorited podcasts on a dedicated page.
+- [ ] Remove a podcast from my favorites list when I no longer want it.
+- [ ] Toggle between light and dark mode for better visual comfort.
+- [ ] Enjoy a seamless, modern, and intuitive user experience.
+- [ ]  Experience a responsive design that adapts seamlessly across mobile, tablet, and desktop devices.
+
+ - [ ] Filter podcasts by duration, popularity, release date, or genre for a more refined search experience.
+
+ - [ ] Have infinite scrolling or pagination when browsing large lists of podcasts.
+
+ - [ ] Continue playback from where I left off, even after navigating away or closing the app.
+
+ - [ ] Control playback with a mini-player that persists while browsing other sections of the app.
+
+ - [ ] See detailed podcast information, including description, host details, episode count, and listener ratings.
+
+ - [ ] Access a dedicated episode page for each podcast, where I can see show notes and timestamps.
+
+ - [ ] Download episodes for offline listening.
+
+ - [ ] Receive personalized recommendations based on my listening history and favorites.
+
+ - [ ] Share a podcast or episode via social media or direct links.
+
+ - [ ] Adjust playback speed (e.g., 1.0x, 1.5x, 2.0x).
+
+ - [ ] Enable background playback, so I can listen while using other apps.
+
+ - [ ] Receive notifications for new episodes of my favorited podcasts.
+
+ - [ ] Access a recently played section to easily resume podcasts I listened to before.
+
+ - [ ] Switch between grid and list views when browsing podcasts for a better user experience.
+
+ - [ ] Experience smooth animations and transitions for a modern and polished UI.
+
+## Tech Stack
+- **Frontend:** Next.js, TypeScript, Tailwind CSS
+- **UI Components:** ShadCN
+- **State Management:** React Hooks
+- **Image Optimization:** Next/Image
+
+## Installation & Setup
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone the repository
+git clone https://github.com/your-username/EchoCast.git
+
+# Navigate into the project directory
+cd EchoCast
+
+# Install dependencies
+npm install  # or yarn install
+
+# Start the development server
+npm run dev  # or yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
+Contributions are welcome! If you find any issues or have suggestions for improvements, feel free to create an issue or submit a pull request.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
+🚀 **Enjoy streaming your favorite podcasts with EchoCast!** 🎧
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
