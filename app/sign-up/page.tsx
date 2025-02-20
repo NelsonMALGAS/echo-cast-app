@@ -1,8 +1,11 @@
+import AuthForm from "@/components/AuthForm"
 
 
 const RegisterPage = () => {
   return (
-    <div>RegisterPage</div>
+    <div className="w-full h-full dark:bg-black bg-gray-200">
+    <AuthForm mode="register" />
+  </div>
   )
 }
 

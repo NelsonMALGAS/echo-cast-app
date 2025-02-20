@@ -2,9 +2,10 @@ import { PageLinkType } from "@/types";
 
 
 const pagesLink:PageLinkType[] = [
-    { id: 1, name: 'home', href: '/' },
-    { id: 2, name: 'favorites', href: '/favorites' },
-    { id: 3, name: 'podcasts', href: '/podcasts' }
+    { id: 1, name: 'Home', href: '/' , icon:"home" },
+    { id: 2, name: 'Favorites', href: '/favorites' , icon:"heart" },
+    { id: 3, name: 'Podcasts', href: '/podcasts' , icon:"headphones" },
 ];
 
 export default pagesLink;
+

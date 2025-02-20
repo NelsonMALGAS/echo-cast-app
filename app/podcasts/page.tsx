@@ -1,8 +1,12 @@
+// https://podcast-api.netlify.app/
 
+import PodcastList from "@/components/PodcastList"
 
 const PodcastsPage = () => {
   return (
-    <div>PodcastsPage</div>
+    <div>
+      <PodcastList />
+    </div>
   )
 }
 
