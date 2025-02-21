@@ -12,17 +12,17 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { getGenreNames } from "@/helpers";
 import Link from "next/link";
-import { Heart , HeartOff } from "lucide-react"
+import { Heart, HeartOff } from "lucide-react";
 
 type ShowCardProps = {
   show: PreviewShowType;
-  isFavorite:(showId: string) => boolean
-  addToFavorites: (show: PreviewShowType) => void
-  removeFromFavorites: (showId: string) => void
+  isFavorite: (showId: string) => boolean;
+  addToFavorites: (show: PreviewShowType) => void;
+  removeFromFavorites: (showId: string) => void;
 };
 
 const ShowCard = (props: ShowCardProps) => {
-    const { show , addToFavorites , isFavorite , removeFromFavorites  } = props;
+  const { show, addToFavorites, isFavorite, removeFromFavorites } = props;
   const { image, genres, updated, seasons, title } = show;
 
   return (
@@ -32,10 +32,12 @@ const ShowCard = (props: ShowCardProps) => {
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <Card className=" w-full max-w-sm rounded-lg overflow-hidden shadow-lg border border-border transition-transform transform hover:scale-105 flex flex-col">
-            {/* Favorite Icon (Top Right) */}
-            <button
+        {/* Favorite Icon (Top Right) */}
+        <button
           onClick={() =>
-            isFavorite(show.id) ? removeFromFavorites(show.id) : addToFavorites(show)
+            isFavorite(show.id)
+              ? removeFromFavorites(show.id)
+              : addToFavorites(show)
           }
           className="absolute top-4 right-4 p-2 rounded-full bg-muted hover:bg-muted/80 transition z-10"
         >
@@ -50,8 +52,9 @@ const ShowCard = (props: ShowCardProps) => {
           <Image
             src={image}
             alt={title}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
+            priority
             unoptimized
             className="rounded-t-lg w-full h-full"
           />
@@ -59,7 +62,6 @@ const ShowCard = (props: ShowCardProps) => {
 
         {/* Card Header */}
         <CardHeader className="p-4 flex-grow">
-        
           <CardTitle className="text-xl font-semibold text-foreground  overflow-hidden whitespace-nowrap text-ellipsis">
             {title}
           </CardTitle>

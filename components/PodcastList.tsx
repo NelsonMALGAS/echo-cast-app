@@ -173,8 +173,8 @@ const PodcastList = () => {
         setTitleQuery={setTitleQuery}
         handleSearch={handleSearch}
       />
-      <div className="flex justify-between w-1/2 gap-4">
-        <div className="">
+      <div className="flex justify-between items-center align-middle w-1/2 gap-4">
+        <div className="flex items-center">
           <Select value={selectedSort} onValueChange={handleSortChange}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select a fruit" />
@@ -188,7 +188,7 @@ const PodcastList = () => {
             </SelectContent>
           </Select>
         </div>
-        <div className="">
+        <div className="flex items-center">
           <Select value={selectedGenre} onValueChange={handleGenreChange}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Select a fruit" />

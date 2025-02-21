@@ -12,7 +12,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-export function ModeToggle() {
+type ModeToggleProps = {
+  toggleNavbar: () => void
+}
+
+export function ModeToggle({ toggleNavbar }: ModeToggleProps) {
   const { setTheme } = useTheme()
 
   return (
@@ -25,13 +29,22 @@ export function ModeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
+        <DropdownMenuItem onClick={() => {
+          setTheme("light")
+          toggleNavbar()
+        }}>
           Light
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
+        <DropdownMenuItem onClick={() => {
+          setTheme("dark")
+          toggleNavbar()
+        }}>
           Dark
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
+        <DropdownMenuItem onClick={() => {
+          setTheme("system")
+          toggleNavbar()
+        }}>
           System
         </DropdownMenuItem>
       </DropdownMenuContent>

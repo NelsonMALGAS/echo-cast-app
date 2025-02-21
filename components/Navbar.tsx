@@ -99,7 +99,7 @@ const Navbar = () => {
             </button>
           )}
         </motion.ul>
-        <ModeToggle />
+        <ModeToggle toggleNavbar={toggleNavbar} />
       </div>
 
       {/* Mobile Menu Button */}
@@ -121,7 +121,7 @@ const Navbar = () => {
               <Button variant="ghost" size="icon" className="self-end" onClick={toggleNavbar}>
                 <X size={24} />
               </Button>
-              <ModeToggle />
+              <ModeToggle toggleNavbar={toggleNavbar} />
             </div>
             <ul className="space-y-4">
               {pagesLink.map((page) => (
