@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -13,15 +11,14 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { PodcastType } from "@/types";
+import { useState } from "react";
 
 type PodcastDetailsProps = {
   podcast: PodcastType;
 };
 
-
 const PodcastDetails = ({ podcast }: PodcastDetailsProps) => {
   const [currentAudio, setCurrentAudio] = useState<string | null>(null);
-  const router = useRouter();
 
   return (
     <div className="max-w-5xl mx-auto p-6">

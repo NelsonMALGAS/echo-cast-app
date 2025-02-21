@@ -1,5 +1,5 @@
 import LandingPage from "@/components/LandingPage";
-import Alert from "@/components/ui/alert";
+
 
 const Home = () => {
   return (

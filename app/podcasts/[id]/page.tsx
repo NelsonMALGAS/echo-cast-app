@@ -4,7 +4,6 @@ import ErrorComponent from "@/components/Error"
 import LoadingSpinner from "@/components/LoadingSpinner"
 import PodcastDetails from "@/components/PodcastDetails"
 import { ErrorType, PodcastType } from "@/types"
-import { error } from "console"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 

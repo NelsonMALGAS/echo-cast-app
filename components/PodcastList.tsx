@@ -8,7 +8,6 @@ import LoadingSpinner from "./LoadingSpinner";
 import SearchBar from "./SearchBar";
 import { PreviewShowType } from "@/types";
 import useAuth from "@/hooks/useAuth";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import NotAuthenticated from "./NotAuthenticated";
 
@@ -20,7 +19,7 @@ const PodcastList = () => {
   const [originalShows, setOriginalShows] = useState<PreviewShowType[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
+ 
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);

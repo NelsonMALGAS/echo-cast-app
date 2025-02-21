@@ -19,7 +19,7 @@ const FavoritesPage = () => {
       {/* No Favorites Message */}
       {favorites.length === 0 ? (
         <div className="text-center text-muted-foreground">
-          <p className="text-lg">You haven't added any favorites yet.</p>
+          <p className="text-lg">You haven&apos;t added any favorites yet.</p>
           <p className="mt-2">Browse shows and tap the ❤️ to add favorites!</p>
         </div>
       ) : (
