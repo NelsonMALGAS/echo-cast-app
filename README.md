@@ -40,7 +40,7 @@ EchoCast is a modern, minimalistic, and fully responsive podcast streaming appli
 
  - [ ] Filter podcasts by duration, popularity, release date, or genre for a more refined search experience.
 
- - [ ] Have infinite scrolling or pagination when browsing large lists of podcasts.
+ - [x] Have infinite scrolling or pagination when browsing large lists of podcasts.
 
  - [ ] Continue playback from where I left off, even after navigating away or closing the app.
 
@@ -54,7 +54,7 @@ EchoCast is a modern, minimalistic, and fully responsive podcast streaming appli
 
  - [ ] Receive personalized recommendations based on my listening history and favorites.
 
- - [ ] Share a podcast or episode via social media or direct links.
+ - [x] Share a podcast or episode via social media or direct links.
 
  - [ ] Adjust playback speed (e.g., 1.0x, 1.5x, 2.0x).
 
