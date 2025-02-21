@@ -7,6 +7,7 @@ import {
     signOut,
     sendPasswordResetEmail,
     User,
+    updateProfile
 } from "firebase/auth"
 import { useState, useEffect } from "react"
 
@@ -41,13 +42,15 @@ useEffect(() => {
  * @param email - user email
  * @param password - user password
  */
-const handleSignUp = async (email: string, password: string) => {
+const handleSignUp = async (email: string, password: string , username:string) => {
     setStatus("pending")
     setLoading(true)
     setError({message: "", statusCode: null})
     try {
 
-        await createUserWithEmailAndPassword(auth, email, password)
+        const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
+        const user = userCredentials.user
+        await updateProfile(user, {displayName: username})
         setLoading(false)
         setStatus("success")
         setSuccess("Account created successfully")

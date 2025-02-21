@@ -1,6 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { motion } from "framer-motion";
 import usePodcasts from "@/hooks/usePostcasts";
 import ShowCard from "./ShowCard";
@@ -10,20 +19,30 @@ import { PreviewShowType } from "@/types";
 import useAuth from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import NotAuthenticated from "./NotAuthenticated";
+import { genresFilters } from "@/genres";
+import { getGenreNames } from "@/helpers";
+
+/**
+ * 
+ * TODO: Make sure the sorting and filtering works together
+ */
 
 const PodcastList = () => {
   const { addToFavorites, isFavorite, removeFromFavorites } = usePodcasts();
   const { user, loading: authLoading } = useAuth();
   const [titleQuery, setTitleQuery] = useState<string>("");
-  const [showPreviews, setShowPreviews] = useState<PreviewShowType[] | null>(null);
-  const [originalShows, setOriginalShows] = useState<PreviewShowType[] | null>(null);
+  const [showPreviews, setShowPreviews] = useState<PreviewShowType[] | null>(
+    null
+  );
+  const [originalShows, setOriginalShows] = useState<PreviewShowType[] | null>(
+    null
+  );
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
- 
-
-  // Pagination state
+  const [selectedSort, setSelectedSort] = useState<string>("asc");
+  const [selectedGenre, setSelectedGenre] = useState<string>("default");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8; // Number of podcasts per page
+  const itemsPerPage = 8;
 
   // Fetch all shows on mount
   useEffect(() => {
@@ -50,9 +69,9 @@ const PodcastList = () => {
     fetchAllShows();
   }, []);
 
- if(!authLoading && !user) {
-  return <NotAuthenticated />
- }
+  if (!authLoading && !user) {
+    return <NotAuthenticated />;
+  }
 
   // Filter shows by title
   const filterShowsByTitle = (title: string) => {
@@ -65,24 +84,71 @@ const PodcastList = () => {
   // Handle search functionality
   const handleSearch = () => {
     if (!originalShows) return;
-  
+
     if (titleQuery.trim() === "") {
       setShowPreviews(originalShows);
-      setCurrentPage(1); 
+      setCurrentPage(1);
       return;
     }
-  
+
     const filteredResults = filterShowsByTitle(titleQuery);
     setShowPreviews(filteredResults);
-    setCurrentPage(1); 
+    setCurrentPage(1);
     setTitleQuery("");
   };
-  
+
+  const sortByDate = (order: string) => {
+    if (!originalShows) return;
+
+    const sortedShows = originalShows
+      ? [...originalShows].sort((a, b) => {
+          const dateA = new Date(a.updated).getTime();
+          const dateB = new Date(b.updated).getTime();
+
+          return order === "asc" ? dateA - dateB : dateB - dateA;
+        })
+      : [];
+
+    setShowPreviews(sortedShows);
+  };
+
+  const filterByGenre = (genre: string) => {
+    if (!originalShows) return;
+
+    if (genre === "default") {
+      setShowPreviews(originalShows);
+      return;
+    }
+
+    const filteredShows = originalShows.filter((show) => {
+      const genreDetails = getGenreNames(show.genres).split(",");
+
+      return genreDetails.includes(genre);
+    });
+
+    setShowPreviews(filteredShows);
+  };
+
+  const handleSortChange = (value: string) => {
+    setSelectedSort(value);
+    sortByDate(value);
+  };
+
+  // 🔹 Handle Genre Selection
+  const handleGenreChange = (value: string) => {
+    setSelectedGenre(value);
+    filterByGenre(value);
+  };
 
   // Pagination logic
-  const totalPages = showPreviews ? Math.ceil(showPreviews.length / itemsPerPage) : 0;
+  const totalPages = showPreviews
+    ? Math.ceil(showPreviews.length / itemsPerPage)
+    : 0;
   const paginatedShows = showPreviews
-    ? showPreviews.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+    ? showPreviews.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+      )
     : [];
 
   // Show loading state
@@ -102,8 +168,45 @@ const PodcastList = () => {
   return (
     <div className="py-10 px-6 md:px-12 bg-background flex flex-col items-center justify-center">
       {/* Search Bar */}
-      <SearchBar titleQuery={titleQuery} setTitleQuery={setTitleQuery} handleSearch={handleSearch} />
-
+      <SearchBar
+        titleQuery={titleQuery}
+        setTitleQuery={setTitleQuery}
+        handleSearch={handleSearch}
+      />
+      <div className="flex justify-between w-1/2 gap-4">
+        <div className="">
+          <Select value={selectedSort} onValueChange={handleSortChange}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select a fruit" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>SortBy UpdatedAt</SelectLabel>
+                <SelectItem value="asc">A-Z</SelectItem>
+                <SelectItem value="desc">Z-A</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="">
+          <Select value={selectedGenre} onValueChange={handleGenreChange}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select a fruit" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Genres</SelectLabel>
+                <SelectItem value="default">Default</SelectItem>
+                {genresFilters.map((genre) => (
+                  <SelectItem value={genre.name} key={genre.code}>
+                    {genre.name}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
       {/* Section Title */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
@@ -159,7 +262,9 @@ const PodcastList = () => {
           <Button
             variant="outline"
             disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
           >
             Next
           </Button>

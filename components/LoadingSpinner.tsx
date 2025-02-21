@@ -1,4 +1,4 @@
-import { Headphones, Mic } from "lucide-react";
+import { Headphones } from "lucide-react";
 
 type LoadingSpinnerProps = {
   message?: string;

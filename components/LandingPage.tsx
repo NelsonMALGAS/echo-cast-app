@@ -8,12 +8,10 @@ import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
 
 const LandingPage = () => {
-
-  const { user , loading} = useAuth()
+  const { user, loading } = useAuth();
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-full bg-background px-6 py-10">
-      
       {/* Card Container */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -30,7 +28,9 @@ const LandingPage = () => {
             height={90}
             className="rounded-full border-2 border-primary"
           />
-          <h1 className="text-3xl md:text-4xl font-bold tracking-wide">EchoCast</h1>
+          <h1 className="text-3xl md:text-4xl font-bold tracking-wide">
+            EchoCast
+          </h1>
         </div>
 
         {/* Hero Section */}
@@ -44,9 +44,13 @@ const LandingPage = () => {
             <p className="text-lg text-muted-foreground">Loading...</p>
           ) : user ? (
             <>
-              <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">
-                Welcome back, <span className="text-primary">{user?.email}</span>!
+              <h2 className="text-3xl md:text-5xl font-extrabold leading-snug text-center">
+                Welcome back,
+                <span className="block bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
+                  {user?.displayName || user?.email}!
+                </span>
               </h2>
+
               <p className="mt-4 text-lg text-muted-foreground">
                 Continue exploring the best podcasts curated just for you.
               </p>
@@ -93,7 +97,7 @@ const LandingPage = () => {
                     Login <LogIn className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
-                <Link href="/register">
+                <Link href="/sign-up">
                   <Button
                     size="lg"
                     className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full flex items-center"

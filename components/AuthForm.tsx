@@ -9,6 +9,7 @@ import { FaGithub } from "react-icons/fa";
 import useAuth from "@/hooks/useAuth";
 import Alert from "./ui/alert";
 import { useRouter } from "next/navigation";
+import { ErrorType } from "@/types";
 
 
 type AuthFormProps = {
@@ -29,6 +30,7 @@ const AuthForm = ({ mode }: AuthFormProps) => {
   const [pending, setPending] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
   const [resetMessage, setResetMessage] = useState<string | null>(null);
+  const [passwordsMisMatch , setPasswordsMisMatch] = useState<ErrorType>({message:"" , statusCode:null})
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -52,9 +54,14 @@ const AuthForm = ({ mode }: AuthFormProps) => {
     setPending(true);
     setAuthError(null);
     setResetMessage(null);
+
+    if(isRegister && formData.password !== formData.confirmPassword){
+      setPasswordsMisMatch({message:"Passwords do not match" , statusCode:400})
+      return
+    }
     try {
       if (isRegister) {
-        await handleSignUp(formData.email, formData.password);
+        await handleSignUp(formData.email, formData.password , formData.username);
         setAuthError(null)
       } else if (mode === "login") {
         await handleLogin(formData.email, formData.password);
@@ -185,6 +192,7 @@ const AuthForm = ({ mode }: AuthFormProps) => {
       {resetMessage && <Alert message={resetMessage} type="success" />}
       {success && <Alert message={success} type="success" />}
       {error?.message && <Alert message={error.message} type="error" code={error.statusCode ?? undefined} />}
+      {passwordsMisMatch.message && <Alert message={passwordsMisMatch.message} type="error" code={passwordsMisMatch.statusCode ?? undefined} />}
     </div>
   );
 };
