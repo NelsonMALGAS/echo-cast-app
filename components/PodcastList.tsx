@@ -7,14 +7,23 @@ import ShowCard from "./ShowCard";
 import LoadingSpinner from "./LoadingSpinner";
 import SearchBar from "./SearchBar";
 import { PreviewShowType } from "@/types";
+import useAuth from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 const PodcastList = () => {
   const { addToFavorites, isFavorite, removeFromFavorites } = usePodcasts();
+  const { user, loading: authLoading } = useAuth();
   const [titleQuery, setTitleQuery] = useState<string>("");
   const [showPreviews, setShowPreviews] = useState<PreviewShowType[] | null>(null);
   const [originalShows, setOriginalShows] = useState<PreviewShowType[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8; // Number of podcasts per page
 
   // Fetch all shows on mount
   useEffect(() => {
@@ -25,7 +34,7 @@ const PodcastList = () => {
       try {
         const response = await fetch("https://podcast-api.netlify.app");
         if (!response.ok) throw new Error("Failed to fetch podcasts");
-        
+
         const data: PreviewShowType[] = await response.json();
         setShowPreviews(data);
         setOriginalShows(data); // Save original data for resetting
@@ -41,6 +50,17 @@ const PodcastList = () => {
     fetchAllShows();
   }, []);
 
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.push("/login");
+    }
+  }, [authLoading, user, router]);
+
+  if (!authLoading && !user) {
+    return null; // Prevents rendering until redirect completes
+  }
+
   // Filter shows by title
   const filterShowsByTitle = (title: string) => {
     if (!originalShows) return [];
@@ -50,16 +70,27 @@ const PodcastList = () => {
   };
 
   // Handle search functionality
-  const handleSearch = async () => {
+  const handleSearch = () => {
+    if (!originalShows) return;
+  
     if (titleQuery.trim() === "") {
-      setShowPreviews(originalShows); // Restore all shows if search is empty
+      setShowPreviews(originalShows);
+      setCurrentPage(1); 
       return;
     }
-
-    const result = filterShowsByTitle(titleQuery);
-    setShowPreviews(result.length > 0 ? result : originalShows);
-    setTitleQuery(""); // Reset search input
+  
+    const filteredResults = filterShowsByTitle(titleQuery);
+    setShowPreviews(filteredResults);
+    setCurrentPage(1); 
+    setTitleQuery("");
   };
+  
+
+  // Pagination logic
+  const totalPages = showPreviews ? Math.ceil(showPreviews.length / itemsPerPage) : 0;
+  const paginatedShows = showPreviews
+    ? showPreviews.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+    : [];
 
   // Show loading state
   if (loading) {
@@ -78,11 +109,7 @@ const PodcastList = () => {
   return (
     <div className="py-10 px-6 md:px-12 bg-background flex flex-col items-center justify-center">
       {/* Search Bar */}
-      <SearchBar
-        titleQuery={titleQuery}
-        setTitleQuery={setTitleQuery}
-        handleSearch={handleSearch}
-      />
+      <SearchBar titleQuery={titleQuery} setTitleQuery={setTitleQuery} handleSearch={handleSearch} />
 
       {/* Section Title */}
       <motion.h2
@@ -104,8 +131,8 @@ const PodcastList = () => {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
       >
-        {showPreviews && showPreviews.length > 0 ? (
-          showPreviews.map((show) => (
+        {paginatedShows.length > 0 ? (
+          paginatedShows.map((show) => (
             <ShowCard
               key={show.id}
               show={show}
@@ -120,6 +147,31 @@ const PodcastList = () => {
           </p>
         )}
       </motion.div>
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center mt-8 space-x-4">
+          <Button
+            variant="outline"
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          >
+            Previous
+          </Button>
+
+          <span className="text-lg font-medium">
+            Page {currentPage} of {totalPages}
+          </span>
+
+          <Button
+            variant="outline"
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          >
+            Next
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

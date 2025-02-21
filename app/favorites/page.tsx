@@ -3,14 +3,17 @@
 import ShowCard from "@/components/ShowCard";
 import usePodcasts from "@/hooks/usePostcasts";
 
-
 const FavoritesPage = () => {
-  const { favorites, isFavorite, addToFavorites, removeFromFavorites } = usePodcasts();
+  const { favorites, isFavorite, addToFavorites, removeFromFavorites } =
+    usePodcasts();
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-foreground text-center mb-6">
-        Your Favorite Podcasts
+    <div className="max-w-6xl mx-auto p-8">
+      <h1 className="relative text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground text-center mb-6 flex items-center justify-center gap-3">
+        🎧 Your Favorite Podcasts
+        <span className="absolute -top-4 sm:-top-5 right-0 sm:right-6 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-primary to-indigo-500 text-white font-bold shadow-lg text-sm sm:text-base">
+          {favorites.length}
+        </span>
       </h1>
 
       {/* No Favorites Message */}
