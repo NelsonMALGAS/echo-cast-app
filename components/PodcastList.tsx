@@ -10,6 +10,7 @@ import { PreviewShowType } from "@/types";
 import useAuth from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import NotAuthenticated from "./NotAuthenticated";
 
 const PodcastList = () => {
   const { addToFavorites, isFavorite, removeFromFavorites } = usePodcasts();
@@ -50,16 +51,9 @@ const PodcastList = () => {
     fetchAllShows();
   }, []);
 
-  // Redirect to login if not authenticated
-  useEffect(() => {
-    if (!authLoading && !user) {
-      router.push("/login");
-    }
-  }, [authLoading, user, router]);
-
-  if (!authLoading && !user) {
-    return null; // Prevents rendering until redirect completes
-  }
+ if(!authLoading && !user) {
+  return <NotAuthenticated />
+ }
 
   // Filter shows by title
   const filterShowsByTitle = (title: string) => {
