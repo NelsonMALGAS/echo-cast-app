@@ -92,7 +92,8 @@ const LandingPage = () => {
                 <Link href="/login">
                   <Button
                     size="lg"
-                    className="bg-secondary hover:bg-secondary/80 text-white px-6 py-3 rounded-full flex items-center"
+                    variant="ghost"
+                    className="dark:bg-transparent bg-primary/80 border border-primary dark:hover:bg-primary/80 hover:bg-primary/80 hover:text-white/90 text-white px-6 py-3 rounded-full flex items-center"
                   >
                     Login <LogIn className="ml-2 h-5 w-5" />
                   </Button>

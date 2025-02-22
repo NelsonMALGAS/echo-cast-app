@@ -46,17 +46,17 @@ EchoCast is a modern, minimalistic, and fully responsive podcast streaming appli
 
  - [ ] Control playback with a mini-player that persists while browsing other sections of the app.
 
- - [ ] See detailed podcast information, including description, host details, episode count, and listener ratings.
+ - [x] See detailed podcast information, including description, host details, episode count, and listener ratings.
 
  - [x] Access a dedicated episode page for each podcast, where I can see show notes and timestamps.
 
- - [ ] Download episodes for offline listening.
+ - [x] Download episodes for offline listening.
 
  - [ ] Receive personalized recommendations based on my listening history and favorites.
 
  - [x] Share a podcast or episode via social media or direct links.
 
- - [ ] Adjust playback speed (e.g., 1.0x, 1.5x, 2.0x).
+ - [x] Adjust playback speed (e.g., 1.0x, 1.5x, 2.0x).
 
  - [ ] Enable background playback, so I can listen while using other apps.
 

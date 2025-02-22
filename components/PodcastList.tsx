@@ -23,7 +23,7 @@ import { genresFilters } from "@/genres";
 import { getGenreNames } from "@/helpers";
 
 /**
- * 
+ *
  * TODO: Make sure the sorting and filtering works together
  */
 
@@ -173,10 +173,10 @@ const PodcastList = () => {
         setTitleQuery={setTitleQuery}
         handleSearch={handleSearch}
       />
-      <div className="flex justify-between items-center align-middle w-1/2 gap-4">
-        <div className="flex items-center">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 w-full">
+        <div className="flex items-center w-full sm:w-auto">
           <Select value={selectedSort} onValueChange={handleSortChange}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-full sm:w-[180px]">
               <SelectValue placeholder="Select a fruit" />
             </SelectTrigger>
             <SelectContent>
@@ -188,9 +188,9 @@ const PodcastList = () => {
             </SelectContent>
           </Select>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center w-full sm:w-auto mb-2 sm:mb-0">
           <Select value={selectedGenre} onValueChange={handleGenreChange}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-full sm:w-[180px]">
               <SelectValue placeholder="Select a fruit" />
             </SelectTrigger>
             <SelectContent>
@@ -207,6 +207,7 @@ const PodcastList = () => {
           </Select>
         </div>
       </div>
+
       {/* Section Title */}
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
