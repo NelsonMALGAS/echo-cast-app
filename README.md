@@ -30,7 +30,7 @@ EchoCast is a modern, minimalistic, and fully responsive podcast streaming appli
 - [x] Browse and explore different podcasts.
 - [x] Search for specific podcasts by name or category.
 - [x] Sort podcasts ascending or descending order
-- [x] Play podcast episodes directly in the app.
+- [x] Play podcast episodes directly in the app (same audio for all episodes).
 - [x] Mark podcasts as favorites for easy access later.
 - [x] View a list of my favorited podcasts on a dedicated page.
 - [x] Remove a podcast from my favorites list when I no longer want it.
