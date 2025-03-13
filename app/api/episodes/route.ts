@@ -1,13 +1,13 @@
 import dbConnect from "@/db/mongodb";
 import { NextRequest , NextResponse} from "next/server"
 
-export const POST = async (req : NextRequest , res: NextResponse) => {
+export const POST = async (req : NextRequest) => {
     try {
 
         const db = await dbConnect()
         const collection = db?.collection('episodes')
         const data = await req.json();
-        collection?.insertOne(data)
+        await collection?.insertOne(data)
          return NextResponse.json({ success: true, data: data });
     } catch (error) {
         return NextResponse.json({
