@@ -83,7 +83,7 @@ const Navbar = () => {
                 <LogIn size={20} />
                 <li className="cursor-pointer">Login</li>
               </Link>
-              <Link href="/register" className="flex items-center gap-2 text-gray-500 hover:text-primary transition-all">
+              <Link href="/sign-up" className="flex items-center gap-2 text-gray-500 hover:text-primary transition-all">
                 <UserPlus size={20} />
                 <li className="cursor-pointer">Sign Up</li>
               </Link>
@@ -159,7 +159,7 @@ const Navbar = () => {
                     <li className="cursor-pointer">Login</li>
                   </Link>
                   <Link
-                    href="/register"
+                    href="/sign-up"
                     className="flex items-center gap-2 text-gray-500 hover:text-primary transition-all"
                     onClick={toggleNavbar}
                   >
