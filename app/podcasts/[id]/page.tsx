@@ -34,7 +34,7 @@ const SinglePodcastDetailsPage = () => {
  },[id])
 
  if(loadingPodcast){
-  return <LoadingSpinner message="Loading Podcast..." />
+  return <LoadingSpinner />
  }
 
  if(errorPodcast){

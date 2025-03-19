@@ -41,8 +41,6 @@ async function dbConnect() {
     return client.db(dbName);
   } catch (error) {
     console.error("Failed To Connect to database", error);
-  }finally{
-    await client.close();
   }
 
 }

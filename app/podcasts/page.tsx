@@ -1,4 +1,3 @@
-// https://podcast-api.netlify.app/
 
 import PodcastList from "@/components/PodcastList"
 

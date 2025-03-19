@@ -51,12 +51,12 @@ const PodcastList = () => {
       setError(null);
 
       try {
-        const response = await fetch("https://podcast-api.netlify.app");
+        const response = await fetch("https://podcast-api.netlify.app" , {cache:"force-cache"});
         if (!response.ok) throw new Error("Failed to fetch podcasts");
 
         const data: PreviewShowType[] = await response.json();
         setShowPreviews(data);
-        setOriginalShows(data); // Save original data for resetting
+        setOriginalShows(data); 
       } catch (error) {
         if (error instanceof Error) {
           setError(`Error fetching shows: ${error.message}`);
@@ -153,7 +153,7 @@ const PodcastList = () => {
 
   // Show loading state
   if (loading) {
-    return <LoadingSpinner message="Loading Podcasts..." />;
+    return <LoadingSpinner />;
   }
 
   // Show error state
