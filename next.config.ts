@@ -2,10 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: [
-      "res.cloudinary.com",
-      "content.production.cdn.art19.com"
-    ],
     remotePatterns: [
       {
         protocol: "https",

@@ -11,7 +11,7 @@ const LandingPage = () => {
   const { user, loading } = useAuth();
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen w-full bg-background px-6 py-10">
+    <div className="flex flex-col items-center justify-center min-h-screen w-full bg-background px-6 py-5">
       {/* Card Container */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
