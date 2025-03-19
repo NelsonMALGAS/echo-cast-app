@@ -111,7 +111,7 @@ const PodcastDetails = ({ podcast }: PodcastDetailsProps) => {
             Your browser does not support the audio element.
           </audio>
           <Button onClick={() => setCurrentAudio(null)} variant="destructive">
-            <X size={24} className="text-white bg-red-500" />
+            <X size={24} className="text-white" />
           </Button>
         </div>
       )}
