@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { PodcastType } from "@/types";
 import { useState } from "react";
+import { X } from "lucide-react";
 
 type PodcastDetailsProps = {
   podcast: PodcastType;
@@ -105,12 +106,12 @@ const PodcastDetails = ({ podcast }: PodcastDetailsProps) => {
       {/* Floating Audio Player */}
       {currentAudio && (
         <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-card p-4 shadow-lg rounded-lg flex items-center gap-4 w-96">
-          <audio controls autoPlay className="w-full">
+          <audio controls autoPlay onTimeUpdate={(e) => console.log(e)} className="w-full">
             <source src={currentAudio} type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
           <Button onClick={() => setCurrentAudio(null)} variant="destructive">
-            Close
+            <X size={24} className="text-white bg-red-500" />
           </Button>
         </div>
       )}

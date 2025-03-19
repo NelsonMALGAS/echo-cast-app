@@ -62,10 +62,10 @@ const ShowCard = (props: ShowCardProps) => {
 
         {/* Card Header */}
         <CardHeader className="p-4 flex-grow">
-          <CardTitle className="text-xl font-semibold text-foreground  overflow-hidden whitespace-nowrap text-ellipsis">
+          <CardTitle className="text-xl font-semibold text-foreground  whitespace-nowrap text-ellipsis">
             {title}
           </CardTitle>
-          <CardDescription className="flex items-center gap-2 overflow-hidden whitespace-nowrap text-ellipsis">
+          <CardDescription className="flex items-center gap-2 overflow-x-auto scrollbar-hidden whitespace-nowrap text-ellipsis">
             {genres.length > 0 ? (
               getGenreNames(genres)
                 .split(", ")
