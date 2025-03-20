@@ -1,61 +1,79 @@
-import { FAVORITES_STORAGE_KEY } from "@/constants";
 import { PreviewShowType } from "@/types";
 import { useEffect, useState } from "react";
 
-
-
 const usePodcasts = () => {
- 
-  const [showPreviews, setShowPreviews] = useState<PreviewShowType[] | null>();
+  const [showPreviews, setShowPreviews] = useState<PreviewShowType[] | null>(null);
   const [favorites, setFavorites] = useState<PreviewShowType[]>([]);
+  const [favLoading, setFavLoading] = useState(false);
+
+  // Fetch favorites from MongoDB
+  const fetchFavorites = async () => {
+    setFavLoading(true);
+    try {
+      const response = await fetch("/api/favorites");
+      if (!response.ok) throw new Error("Failed to fetch favorites");
+
+      const data = await response.json();
+      setFavorites(data.favorites); // Assuming API returns { favorites: [...] }
+    } catch (err) {
+      console.error("Error fetching favorites:", err);
+    }finally{
+      setFavLoading(false);
+    }
+  };
+
+  // Add a show to favorites (MongoDB)
+  const addToFavorites = async (show: PreviewShowType) => {
+    setFavLoading(true);
+    try {
+      const response = await fetch("/api/favorites", {
+        method: "POST",
+        body: JSON.stringify({ show }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!response.ok) throw new Error("Failed to add to favorites");
+
+      setFavorites((prev) => [...prev, show]); // Update local state
+    } catch (err) {
+      console.error("Error adding to favorites:", err);
+    }finally{
+      setFavLoading(false);
+    }
+  };
+
+  // Remove a show from favorites (MongoDB)
+  const removeFromFavorites = async (showId: string) => {
+    setFavLoading(true);
+    try {
+      const response = await fetch(`/api/favorites`, {
+        method: "DELETE",
+        body: JSON.stringify({ showId }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!response.ok) throw new Error("Failed to remove from favorites");
+
+      setFavorites((prev) => prev.filter((fav) => fav.id !== showId));
+    } catch (err) {
+      console.error("Error removing from favorites:", err);
+    }finally{
+      setFavLoading(false);
+    }
+  };
+
+  // Check if a show is in favorites
+  const isFavorite = (showId: string) => {
   
-
-
-   // Load favorite shows from localStorage
-   const loadFavorites = () => {
-    try {
-      const storedFavorites = localStorage.getItem(FAVORITES_STORAGE_KEY);
-      if (storedFavorites) {
-        setFavorites(JSON.parse(storedFavorites));
-      }
-    } catch (err) {
-      console.error("Error loading favorites from localStorage:", err);
-    }
+   return favorites.some((fav) => fav.id === showId)
+   
   };
 
-  // Save favorites to localStorage
-  const saveFavorites = (updatedFavorites: PreviewShowType[]) => {
-    try {
-      localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(updatedFavorites));
-      setFavorites(updatedFavorites);
-    } catch (err) {
-      console.error("Error saving favorites to localStorage:", err);
-    }
-  };
-
-  // Add a show to favorites
-  const addToFavorites = (show: PreviewShowType) => {
-    if (!favorites.some((fav) => fav.id === show.id)) {
-      const updatedFavorites = [...favorites, show];
-      saveFavorites(updatedFavorites);
-    }
-  };
-
-  // Remove a show from favorites
-  const removeFromFavorites = (showId: string) => {
-    const updatedFavorites = favorites.filter((fav) => fav.id !== showId);
-    saveFavorites(updatedFavorites);
-  };
-
-  // Check if a show is already in favorites
-  const isFavorite = (showId: string) => favorites.some((fav) => fav.id === showId);
-
-  // Load favorites from localStorage on mount
+  // Fetch favorites from MongoDB on mount
   useEffect(() => {
-    loadFavorites();
+    fetchFavorites();
   }, []);
 
- 
   return {
     showPreviews,
     favorites,
@@ -63,6 +81,7 @@ const usePodcasts = () => {
     removeFromFavorites,
     isFavorite,
     setShowPreviews,
+    favLoading
   };
 };
 

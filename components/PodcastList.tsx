@@ -28,7 +28,7 @@ import { getGenreNames } from "@/helpers";
  */
 
 const PodcastList = () => {
-  const { addToFavorites, isFavorite, removeFromFavorites } = usePodcasts();
+  const { addToFavorites, isFavorite, removeFromFavorites , favLoading } = usePodcasts();
   const { user, loading: authLoading } = useAuth();
   const [titleQuery, setTitleQuery] = useState<string>("");
   const [showPreviews, setShowPreviews] = useState<PreviewShowType[] | null>(
@@ -236,6 +236,7 @@ const PodcastList = () => {
               isFavorite={isFavorite}
               addToFavorites={addToFavorites}
               removeFromFavorites={removeFromFavorites}
+              loading={favLoading}
             />
           ))
         ) : (

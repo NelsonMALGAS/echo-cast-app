@@ -23,7 +23,7 @@ const itemVariants = {
 };
 
 const FavoritesPage = () => {
-  const { favorites, isFavorite, addToFavorites, removeFromFavorites } =
+  const { favorites, isFavorite, addToFavorites, removeFromFavorites , favLoading} =
     usePodcasts();
 
   return (
@@ -73,6 +73,7 @@ const FavoritesPage = () => {
                   isFavorite={isFavorite}
                   addToFavorites={addToFavorites}
                   removeFromFavorites={removeFromFavorites}
+                  loading={favLoading}
                 />
               </motion.div>
             ))}

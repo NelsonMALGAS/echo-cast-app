@@ -19,11 +19,13 @@ type ShowCardProps = {
   isFavorite: (showId: string) => boolean;
   addToFavorites: (show: PreviewShowType) => void;
   removeFromFavorites: (showId: string) => void;
+  loading:boolean
 };
 
 const ShowCard = (props: ShowCardProps) => {
-  const { show, addToFavorites, isFavorite, removeFromFavorites } = props;
+  const { show, addToFavorites, isFavorite, removeFromFavorites , loading } = props;
   const { image, genres, updated, seasons, title } = show;
+
 
   return (
     <motion.div
@@ -33,20 +35,24 @@ const ShowCard = (props: ShowCardProps) => {
     >
       <Card className=" w-full max-w-sm rounded-lg overflow-hidden shadow-lg border border-border transition-transform transform hover:scale-105 flex flex-col">
         {/* Favorite Icon (Top Right) */}
-        <button
-          onClick={() =>
-            isFavorite(show.id)
-              ? removeFromFavorites(show.id)
-              : addToFavorites(show)
-          }
-          className="absolute top-4 right-4 p-2 rounded-full bg-muted hover:bg-muted/80 transition z-10"
-        >
-          {isFavorite(show.id) ? (
-            <Heart className="text-red-500 w-6 h-6" fill="red" />
-          ) : (
-            <HeartOff className="text-muted-foreground w-6 h-6" />
-          )}
-        </button>
+        {isFavorite(show.id) ? (
+          <button
+            onClick={() => removeFromFavorites(show.id)}
+            disabled={loading}
+            className="absolute top-4 right-4 p-2 rounded-full bg-muted hover:bg-muted/80 transition z-10 disabled:cursor-not-allowed"
+          >
+            <Heart className={`text-red-500 w-6 h-6 fill-red ${loading ? "blur-sm" : ""}`} fill="currentColor" />
+          </button>
+        ) : (
+          <button
+            onClick={() => addToFavorites(show)}
+            disabled={loading}
+            className="absolute top-4 right-4 p-2 rounded-full bg-muted hover:bg-muted/80 transition z-10 disabled:cursor-not-allowed"
+          >
+            <HeartOff className={`text-muted-foreground w-6 h-6 fill-red ${loading ? "blur-sm" : ""}`} />
+          </button>
+        )}
+
         {/* Podcast Image */}
         <div className="relative w-full h-48">
           <Image
