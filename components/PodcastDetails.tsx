@@ -58,7 +58,7 @@ const PodcastDetails = ({ podcast }: PodcastDetailsProps) => {
       {/* Seasons & Episodes in a Grid */}
       <div className="mt-6">
         {podcast.seasons.map((season) => (
-          <div key={season.season} className="mb-8">
+          <div key={season.season} className="mb-8 bg-card shadow-md rounded-lg p-2">
             <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
                 <AccordionTrigger>
@@ -70,7 +70,7 @@ const PodcastDetails = ({ podcast }: PodcastDetailsProps) => {
                       height={150}
                       className="rounded-lg"
                     />
-                    <h2 className="text-xl font-semibold text-primary flex-1">
+                    <h2 className="text-xl font-semibold text-primary hover:text-primary/70 flex-1">
                       {season.title}
                     </h2>
                   </div>
