@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingSpinner from "@/components/LoadingSpinner";
 import ShowCard from "@/components/ShowCard";
 import usePodcasts from "@/hooks/usePostcasts";
 import { motion, AnimatePresence } from "framer-motion";
@@ -57,6 +58,7 @@ const FavoritesPage = () => {
           >
             <p className="text-lg">You haven&apos;t added any favorites yet.</p>
             <p className="mt-2">Browse shows and tap the ❤️ to add favorites!</p>
+            <LoadingSpinner />
           </motion.div>
         ) : (
           /* Favorites Grid */
