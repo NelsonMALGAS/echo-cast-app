@@ -12,7 +12,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { PodcastType } from "@/types";
 import { useState } from "react";
-import { X } from "lucide-react";
+import { Heart, X } from "lucide-react";
+import usePodcasts from "@/hooks/usePostcasts";
 
 type PodcastDetailsProps = {
   podcast: PodcastType;
@@ -21,8 +22,15 @@ type PodcastDetailsProps = {
 const PodcastDetails = ({ podcast }: PodcastDetailsProps) => {
   const [currentAudio, setCurrentAudio] = useState<string | null>(null);
 
+  const { isFavorite} = usePodcasts()
+
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <div className="max-w-5xl mx-auto p-6 relative">
+      {isFavorite(podcast.id) && (
+        <div className="absolute top-6 right-6 p-4">
+          <Heart className="text-red-500 w-6 h-6 fill-red" fill="currentColor" />
+        </div>
+      )}
       {/* Podcast Header */}
       <Card className="shadow-lg bg-card border border-border">
         <CardHeader className="flex items-center gap-4">
