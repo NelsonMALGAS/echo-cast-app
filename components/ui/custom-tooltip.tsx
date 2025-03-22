@@ -10,7 +10,7 @@ export const CustomTooltip = ({ active, payload, label }: TooltipProps<ValueType
         <p className="text-gray-700 font-semibold">{label}</p>
         <div className="mt-2 space-y-1">
           <p className="text-sm text-gray-600">Name: <span className="font-medium">{name}</span></p>
-          <p className="text-sm text-gray-600">Revenue: <span className="font-medium">${revenue}</span></p>
+          <p className="text-sm text-gray-600">Revenue: <span className="font-medium">R {revenue}</span></p>
           <p className="text-sm text-gray-600">Orders: <span className="font-medium">{orders}</span></p>
         </div>
       </div>
