@@ -47,4 +47,10 @@ export type PodcastType = {
   };
   
 
+  export type GraphType = "bar" | "line" | "pie" | "area" | "scatter"
+  export type RecentActivityType = {
+    id: number;
+    action: string;
+    date: string;
+ }
 

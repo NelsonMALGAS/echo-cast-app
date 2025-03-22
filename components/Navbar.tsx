@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ModeToggle } from "./ModeToggle";
-import { Menu, X, Home, Headphones, Heart, LogIn, UserPlus, LogOut } from "lucide-react";
+import { Menu, X, Home, Headphones, Heart, LogIn, UserPlus, LogOut , LayoutDashboard } from "lucide-react";
 import pagesLink from "@/links";
 import Image from "next/image";
 import Link from "next/link";
@@ -35,7 +35,7 @@ const Navbar = () => {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center gap-3 bg-muted/60 p-2 rounded-full shadow-sm"
+        className="flex items-center gap-3 p-2 rounded-full shadow-sm"
       >
         <Link href="/">
           <Image
@@ -72,6 +72,7 @@ const Navbar = () => {
               {page.icon === "home" && <Home size={20} />}
               {page.icon === "headphones" && <Headphones size={20} />}
               {page.icon === "heart" && <Heart size={20} />}
+              {page.icon === "dashboard" && <LayoutDashboard size={20} />}
               <li className="cursor-pointer">{page.name}</li>
             </Link>
           ))}
