@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Calendar, User as UserIcon } from "lucide-react"; 
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { Button } from "./button";
+import Image from "next/image";
 
 interface UserProfileProps {
   user: User | null;
@@ -26,9 +27,11 @@ const UserProfile = ({ user }: UserProfileProps) => {
         <div className="flex items-center space-x-4">
           <div className="w-16 h-16 rounded-full bg-gray-300">
             {photoURL ? (
-              <img
+              <Image
                 src={photoURL}
                 alt="User Avatar"
+                width={64}
+                height={64}
                 className="w-full h-full rounded-full object-cover"
               />
             ) : (
@@ -53,12 +56,12 @@ const UserProfile = ({ user }: UserProfileProps) => {
 
             {/* User Bio */}
             <div className="mt-4 text-sm text-gray-600">
-              <p><strong>Bio:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p><strong>Bio:</strong> I&apos;m a Fullstack Software Engineer specialising in JavaScript</p>
             </div>
 
             {/* User Roles */}
             <div className="mt-2 text-sm text-gray-600">
-              <p><strong>Role:</strong> Admin</p>
+              <p><strong>Role:</strong> <span className="text-gray-700 font-semibold">Admin</span></p>
             </div>
 
             {/* Social Media Links */}

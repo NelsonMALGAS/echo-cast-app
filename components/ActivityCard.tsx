@@ -10,7 +10,7 @@ const ActivityCard = ({ recentActivity }: Activity) => {
       {recentActivity.map((activity) => (
       <li
       key={activity.id}
-      className="flex flex-col bg-white dark:bg-card rounded-lg p-4 border border-gray-200 dark:border-card-foreground/20 text-card-foreground shadow-md transition-all hover:shadow-lg dark:hover:shadow-gray-900"
+      className="flex flex-col bg-white dark:bg-muted/50 rounded-lg p-4 border border-gray-200 dark:border-card-foreground/20 text-card-foreground shadow-md transition-all hover:shadow-lg"
     >
       <div className="text-gray-500 text-sm mb-2">{activity.date}</div>
       <p className="text-base font-medium text-foreground truncate">

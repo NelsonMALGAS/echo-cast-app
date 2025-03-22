@@ -3,12 +3,11 @@
 import { motion } from "framer-motion";
 import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
-import { Home, Settings, User, Bell, BarChart2 } from "lucide-react";
+import { Home, Settings, User, Bell, BarChart2, MessageCircle, Mic, Star } from "lucide-react";
 import {
   Card,
   CardHeader,
   CardContent,
-  CardFooter,
 } from "@/components/ui/card";
 import {
   Table,
@@ -18,7 +17,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Separator } from "@/components/ui/separator"; // For separating sections
+import { Separator } from "@/components/ui/separator";
 import DashboardChart from "./DashboardChartToggle";
 import ActivityCard from "./ActivityCard";
 import { RecentActivityType } from "@/types";
@@ -29,67 +28,68 @@ const DashboardContent = () => {
 
   // Dummy data for dashboard widgets (replace this later with real MongoDB data)
   const stats = {
-    totalOrders: 150,
-    totalRevenue: 5000,
+    totalStreams: 1500000,
+    totalSubscribers: 500000,
     newMessages: 12,
   };
   const recentActivity: RecentActivityType[] = [
-    { id: 1, action: "Order #1245 placed", date: "2025-03-19" },
-    { id: 2, action: "Message from Support", date: "2025-03-18" },
-    { id: 3, action: "Payment received", date: "2025-03-17" },
-    { id: 4, action: "Order #1246 shipped", date: "2025-03-16" },
-    { id: 5, action: "Password changed", date: "2025-03-15" },
-    { id: 6, action: "New review posted", date: "2025-03-14" },
-    { id: 7, action: "Subscription renewed", date: "2025-03-13" },
-    { id: 8, action: "Order #1247 placed", date: "2025-03-12" },
-    { id: 9, action: "Item added to wishlist", date: "2025-03-11" },
-    { id: 10, action: "Discount applied to order", date: "2025-03-10" },
+    { id: 1, action: "New episode 'Tech Trends' released", date: "2025-03-19" },
+    { id: 2, action: "Listener review submitted", date: "2025-03-18" },
+    { id: 3, action: "Sponsorship deal signed", date: "2025-03-17" },
+    { id: 4, action: "Episode 'AI in 2025' reached 10K streams", date: "2025-03-16" },
+    { id: 5, action: "New subscriber milestone: 50K", date: "2025-03-15" },
+    { id: 6, action: "Guest speaker confirmed for next episode", date: "2025-03-14" },
+    { id: 7, action: "Podcast featured on Apple Podcasts", date: "2025-03-13" },
+    { id: 8, action: "Live Q&A session scheduled", date: "2025-03-12" },
+    { id: 9, action: "New sponsorship inquiry received", date: "2025-03-11" },
+    { id: 10, action: "Social media post reached 100K engagement", date: "2025-03-10" },
   ];
 
   const tasks = [
     {
       _id: 1,
-      invoice: "#INV-001",
-      status: "Pending",
-      method: "Credit Card",
-      amount: "$250.00",
+      episode: "EP-001",
+      status: "Editing",
+      method: "Remote Recording",
+      earnings: "$250.00",
     },
     {
       _id: 2,
-      invoice: "#INV-002",
-      status: "Completed",
-      method: "PayPal",
-      amount: "$120.50",
+      episode: "EP-002",
+      status: "Published",
+      method: "In-Studio",
+      earnings: "$120.50",
     },
     {
       _id: 3,
-      invoice: "#INV-003",
-      status: "In Progress",
-      method: "Bank Transfer",
-      amount: "$320.75",
+      episode: "EP-003",
+      status: "Scheduled",
+      method: "Remote Recording",
+      earnings: "$320.75",
     },
     {
       _id: 4,
-      invoice: "#INV-004",
-      status: "Pending",
-      method: "Cash",
-      amount: "$50.00",
+      episode: "EP-004",
+      status: "Recording",
+      method: "Live Session",
+      earnings: "$50.00",
     },
     {
       _id: 5,
-      invoice: "#INV-005",
-      status: "Completed",
-      method: "Crypto",
-      amount: "$540.30",
+      episode: "EP-005",
+      status: "Published",
+      method: "In-Studio",
+      earnings: "$540.30",
     },
     {
       _id: 6,
-      invoice: "#INV-006",
-      status: "Pending",
-      method: "Debit Card",
-      amount: "$80.20",
+      episode: "EP-006",
+      status: "Editing",
+      method: "Remote Recording",
+      earnings: "$80.20",
     },
   ];
+
 
   if (!loading && !user) {
     return (
@@ -130,7 +130,7 @@ const DashboardContent = () => {
         <div className="text-primary">Dashboard Page</div>
         <span className="text-3xl mt-8">
           {" "}
-          Welcome {user?.displayName ? user?.displayName : user?.displayName}
+          Welcome {user?.displayName ? user?.displayName : user?.email}
         </span>
       </motion.h2>
 
@@ -140,11 +140,11 @@ const DashboardContent = () => {
           <CardHeader>
             <div className="flex items-center space-x-4">
               <Home size={32} className="text-primary" />
-              <h3 className="text-xl font-semibold">Total Orders</h3>
+              <h3 className="text-xl font-semibold">Total Streams</h3>
             </div>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">{stats.totalOrders}</p>
+            <p className="text-2xl font-bold">{stats.totalStreams}</p>
           </CardContent>
         </Card>
 
@@ -153,11 +153,11 @@ const DashboardContent = () => {
           <CardHeader>
             <div className="flex items-center space-x-4">
               <User size={32} className="text-primary" />
-              <h3 className="text-xl font-semibold">Total Revenue</h3>
+              <h3 className="text-xl font-semibold">Total Subscribers</h3>
             </div>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold">${stats.totalRevenue}</p>
+            <p className="text-2xl font-bold">${stats.totalSubscribers}</p>
           </CardContent>
         </Card>
 
@@ -201,19 +201,19 @@ const DashboardContent = () => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[100px]">Invoice</TableHead>
+                <TableHead className="w-[100px]">Episode</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Method</TableHead>
-                <TableHead className="text-right">Amount</TableHead>
+                <TableHead className="text-right">Earnings</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {tasks.map((task) => (
                 <TableRow key={task._id}>
-                  <TableCell className="font-medium">{task.invoice}</TableCell>
+                  <TableCell className="font-medium">{task.episode}</TableCell>
                   <TableCell>{task.status}</TableCell>
                   <TableCell>{task.method}</TableCell>
-                  <TableCell className="text-right">{task.amount}</TableCell>
+                  <TableCell className="text-right">{task.earnings}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -237,18 +237,29 @@ const DashboardContent = () => {
               You have 3 new notifications
             </p>
           </div>
-          <ul className="space-y-2">
-            <li className="flex justify-between items-center">
-              <p className="text-sm">New message from customer service</p>
-              <span className="text-xs text-gray-400">5 minutes ago</span>
+          <ul className="space-y-3 p-4 rounded-lg shadow-md">
+            <li className="flex items-center justify-between p-3 rounded-lg transition hover:bg-muted/50">
+              <div className="flex items-center space-x-3">
+                <MessageCircle className="w-5 h-5 text-blue-500" />
+                <p className="text-sm font-medium">New message from a podcast subscriber</p>
+              </div>
+              <span className="text-xs text-gray-500">5 minutes ago</span>
             </li>
-            <li className="flex justify-between items-center">
-              <p className="text-sm">Order #1245 is confirmed</p>
-              <span className="text-xs text-gray-400">1 hour ago</span>
+
+            <li className="flex items-center justify-between p-3 rounded-lg transition hover:bg-muted/50">
+              <div className="flex items-center space-x-3">
+                <Mic className="w-5 h-5 text-green-500" />
+                <p className="text-sm font-medium">New episode &apos;Behind the Mic&apos; is now live</p>
+              </div>
+              <span className="text-xs text-gray-500">1 hour ago</span>
             </li>
-            <li className="flex justify-between items-center">
-              <p className="text-sm">New review posted on your product</p>
-              <span className="text-xs text-gray-400">3 hours ago</span>
+
+            <li className="flex items-center justify-between p-3 rounded-lg transition hover:bg-muted/50">
+              <div className="flex items-center space-x-3">
+                <Star className="w-5 h-5 text-yellow-500" />
+                <p className="text-sm font-medium">New review posted on Apple Podcasts</p>
+              </div>
+              <span className="text-xs text-gray-500">3 hours ago</span>
             </li>
           </ul>
         </CardContent>
@@ -266,7 +277,7 @@ const DashboardContent = () => {
           <div className="flex items-center space-x-3 mb-4">
             <BarChart2 size={32} className="text-primary" />
             <p className="text-sm text-muted-foreground">
-              Visual representation of your performance
+              Visual representation of all podcast episodes and their performance
             </p>
           </div>
           <DashboardChart />
