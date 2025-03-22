@@ -280,6 +280,8 @@ const DashboardContent = () => {
               Visual representation of all podcast episodes and their performance
             </p>
           </div>
+
+          {/* Charts component */}
           <DashboardChart />
         </CardContent>
       </Card>
