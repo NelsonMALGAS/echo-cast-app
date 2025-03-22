@@ -55,10 +55,10 @@ EchoCast is a modern, minimalistic, and fully responsive podcast streaming appli
 - [x] Toggle between light and dark mode for better visual comfort.  
 - [x] Enjoy a seamless, modern, and intuitive user experience.  
 - [x] Experience a responsive design that adapts seamlessly across mobile, tablet, and desktop devices.  
-- [x] See detailed podcast information, including description, host details, episode count, and listener ratings.  
+- [ ] See detailed podcast information, including description, host details, episode count, and listener ratings.  
 - [x] Access a dedicated episode page for each podcast, where I can see show notes and timestamps.  
-- [x] Download episodes for offline listening.  
-- [x] Share a podcast or episode via social media or direct links.  
+- [ ] Download episodes for offline listening.  
+- [ ] Share a podcast or episode via social media or direct links.  
 - [x] Adjust playback speed (e.g., 1.0x, 1.5x, 2.0x).  
 - [x] Switch between grid and list views when browsing podcasts for a better user experience.  
 - [x] Experience smooth animations and transitions for a modern and polished UI.  
@@ -66,15 +66,15 @@ EchoCast is a modern, minimalistic, and fully responsive podcast streaming appli
 ---
 
 ### **Dashboard-Specific User Stories**  
-- [x] View my total listening time and number of podcasts listened to.  
-- [x] See a list of my recently played podcast episodes.  
-- [x] Check which podcasts I’ve favorited the most.  
-- [x] View a summary of my podcast listening habits over time.  
-- [x] Receive recommended podcasts based on my listening preferences (coming soon).  
+- [ ] View my total listening time and number of podcasts listened to.  
+- [ ] See a list of my recently played podcast episodes.  
+- [ ] Check which podcasts I’ve favorited the most.  
+- [ ] View a summary of my podcast listening habits over time.  
+- [ ] Receive recommended podcasts based on my listening preferences (coming soon).  
 - [x] Access my profile details and authentication status in the dashboard.  
 - [x] See dummy data placeholders for stats until real tracking is implemented.  
-- [x] Filter my listening history by time (e.g., last week, last month).  
-- [x] See upcoming new features for tracking personal podcast stats.  
+- [ ] Filter my listening history by time (e.g., last week, last month).  
+- [ ] See upcoming new features for tracking personal podcast stats.  
 
 ---
 
